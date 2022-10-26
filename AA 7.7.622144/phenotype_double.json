@@ -1,0 +1,25 @@
+{
+  "builtin": false,
+  "collection": "UnlockAA",
+  "group": "ManipulatePhenotype",
+  "name": "Phenotype.Double",
+  "author": "UnlockAA",
+  "version": 1,
+  "description": "Manipulate Phenotype Double",
+  "className": "mfd",
+  "methodName": "m",
+  "parameterTypes": [
+    "java.lang.String",
+    "double"
+  ],
+  "returnType": "void",
+  "minSdk": 1,
+  "maxSdk": 923,
+  "minApk": 77622144,
+  "maxApk": 77622144,
+  "enabled": true,
+  "optional": false,
+  "usage": true,
+  "notify": false,
+  "luaScript": "-- Copyright (C) 2022 UnlockAA\n\n-- This is free software: you can redistribute it and/or modify\n-- it under the terms of the GNU General Public License as published by\n-- the Free Software Foundation, either version 3 of the License, or\n-- (at your option) any later version.\n\n-- This is distributed in the hope that it will be useful,\n-- but WITHOUT ANY WARRANTY; without even the implied warranty of\n-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n-- GNU General Public License for more details.\n\n-- You should have received a copy of the GNU General Public License\n-- along with XPrivacyLua. If not, see <http://www.gnu.org/licenses/>.\n\nfunction before(hook, param)\n    local packageName = param:getPackageName()\n\n    if packageName == 'com.google.android.projection.gearhead' then\n        local key = param:getArgument(0)\n        local value = param:getArgument(1)\n        log(key .. ' = ' .. value)\n        -- just an example\n        if (key == 'OsDeprecation__message_min_sdk') then\n            param:setArgument(1, 40)\n            return true\n        end\n    end\n    return false\nend\n"
+}
